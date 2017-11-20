@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <connectionString>http://10.10.40.18:666/api/</connectionString>
+  <SQLiteDB>MFIAlertApp.db3</SQLiteDB>
+</config>
