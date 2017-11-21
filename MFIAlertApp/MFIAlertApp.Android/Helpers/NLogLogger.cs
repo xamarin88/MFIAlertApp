@@ -1,18 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using NLog;
+using Xamarin.Forms;
+using MFIAlertApp.Droid.Helpers;
+using MFIAlertApp.Helpers;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
+[assembly: Dependency(typeof(NLogLogger))]
 namespace MFIAlertApp.Droid.Helpers
 {
-    class NLogLogger
+    public class NLogLogger : MFIAlertApp.Interfaces.ILogger
     {
+        private Logger log;
+
+        string traceEnabled = ConfigurationService.GetConfigurationValue("traceEnabled");
+
+        public NLogLogger(Logger log)
+        {
+            this.log = log;
+        }
+
+        public void Debug(string text, params object[] args)
+        {
+            if (traceEnabled == "1") { log.Debug(text, args); }
+        }
+
+        public void Error(string text, params object[] args)
+        {
+            if (traceEnabled == "1") { log.Error(text, args); }
+        }
+
+        public void Fatal(string text, params object[] args)
+        {
+            if (traceEnabled == "1") { log.Fatal(text, args); }
+        }
+
+        public void Info(string text, params object[] args)
+        {
+            if (traceEnabled == "1") { log.Info(text, args); }
+        }
+
+        public void Trace(string text, params object[] args)
+        {
+            if (traceEnabled == "1") { log.Trace(text, args); }
+        }
+
+        public void Warn(string text, params object[] args)
+        {
+            if (traceEnabled == "1") { log.Warn(text, args); }
+        }
     }
 }
